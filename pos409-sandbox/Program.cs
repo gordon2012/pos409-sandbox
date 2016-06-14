@@ -19,7 +19,7 @@ namespace pos409_sandbox
             {
                 Console.WriteLine(Environment.NewLine + "Main Menu");
                 Console.WriteLine("=========");
-                Console.WriteLine("1: Greeting");
+                Console.WriteLine("1: Strings");
                 Console.WriteLine("2: Disclaimer");
                 Console.WriteLine("X: Exit");
 
@@ -27,7 +27,13 @@ namespace pos409_sandbox
 
                 if (input.Equals("1"))
                 {
-                    Console.WriteLine("Hello, World!");
+
+                    string[] fruits = { "Banana", "Orange", "Apple", "Kiwi", "Strawberry", "Grape" };
+                    foreach (string f in fruits)
+                    {
+                        Console.WriteLine(f + " is a " + f.Length.ToString() + " character fruit.");
+                    }
+
                 }
                 else if (input.Equals("2"))
                 {
@@ -38,6 +44,10 @@ namespace pos409_sandbox
                     Console.WriteLine("Goodbye.");
                 }                
             }
+
+
+
+
         }
     }
 }
