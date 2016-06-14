@@ -20,7 +20,7 @@ namespace pos409_sandbox
                 Console.WriteLine(Environment.NewLine + "Main Menu");
                 Console.WriteLine("=========");
                 Console.WriteLine("1: Strings");
-                Console.WriteLine("2: Disclaimer");
+                Console.WriteLine("2: Lottery");
                 Console.WriteLine("X: Exit");
 
                 input = Console.ReadLine();
@@ -37,7 +37,34 @@ namespace pos409_sandbox
                 }
                 else if (input.Equals("2"))
                 {
-                    Console.WriteLine("The author is not responsible for any damages, real or imagined, caused by this program.");
+                    Random rnd = new Random();
+                    int[] numbers = { 0, 0, 0, 0, 0, 0 };
+                    for (int i = 0; i < 6; i++)
+                    {
+                        int num;
+                        bool unique;
+                        do
+                        {
+                            num = rnd.Next(1, 49 + 1);
+                            unique = true;
+                            foreach (int n in numbers)
+                            {
+                                if (n == num)
+                                {
+                                    unique = false;
+                                }
+                            }
+                        } while (!unique);
+                        numbers[i] = num;
+                    }
+                    foreach (int n in numbers)
+                    {
+                        Console.Write(n.ToString() + " ");
+                    }
+                    Console.WriteLine();
+
+
+
                 }
                 else if (input.Equals("X"))
                 {
@@ -46,7 +73,7 @@ namespace pos409_sandbox
             }
 
 
-
+            Console.ReadLine();
 
         }
     }
