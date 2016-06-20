@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Drawing;
+using System.Reflection;
+
 namespace pos409_sandbox
 {
 
@@ -74,8 +77,29 @@ namespace pos409_sandbox
         }
 
     }
+
+
+
+
     
-    
+    //class ChainNode : IEnumerable<ChainNode>
+    //{
+    //    public string Text = "";
+
+    //    public ChainNode(string text)
+    //    {
+    //        Text = text;
+    //    }
+
+    //}
+
+
+    //class ChainEnumerator : IEnumerator<ChainNode>
+    //{
+
+    //}
+
+
     class Program
     {
         static void Main(string[] args)
@@ -164,7 +188,12 @@ namespace pos409_sandbox
 
 
                 }
+                else if (input.Equals("4"))
+                {
+                    Assembly myAssembly = Assembly.Load("System.Data");
+                    Console.WriteLine(myAssembly.CodeBase);
 
+                }
 
                 else if (input.Equals("X"))
                 {
