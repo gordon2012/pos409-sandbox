@@ -190,8 +190,15 @@ namespace pos409_sandbox
                 }
                 else if (input.Equals("4"))
                 {
-                    Assembly myAssembly = Assembly.Load("System.Data");
-                    Console.WriteLine(myAssembly.CodeBase);
+                    //Assembly myAssembly = Assembly.Load("System.Data");
+                    //Console.WriteLine(myAssembly.CodeBase);
+
+                    //myAssembly.GetType();
+
+                    //myAssembly.getex
+
+                    //Console.WriteLine(typeof(new string));
+                    //typeof
 
                 }
 
