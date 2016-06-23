@@ -9,7 +9,6 @@ using System.Reflection;
 
 namespace pos409_sandbox
 {
-
     // Struct
     public struct bookStruct
     {
@@ -79,53 +78,37 @@ namespace pos409_sandbox
     }
 
 
-
-
-    
-    
-
-
-
     class Program
     {
-
-        static long factorial(long n)
+        static string factorial(string input)
         {
-            return n < 1 ? (n == 0 ? 1 : -1) : factorial(n - 1) * n;
-        }
+            long num;
 
-        static string getFactorial(string input)
-        {
-            
-
-            ulong num;
-            //return "Result: " + ans.ToString();
-            //string result = "no error";
-
-            Func<ulong, ulong> fac = null;
+            Func<long, long> fac = null;
             fac = (n) =>
             {
                 if (n == 0) return 1;
 
-                ulong res = 0;
+                long res = 0;
 
-                try
+                checked
                 {
-                    res = fac(n - 1) * n;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.ToString());
+                    try
+                    {
+                        res = fac(n - 1) * n;
+                    }
+                    catch(StackOverflowException)
+                    {
+                        return 0;
+                    }
+                    catch (Exception)
+                    {
+                        //Console.WriteLine(e.ToString());
+                        throw;
+                    }
                 }
                 return res;
-
-
-                //return n == 0 ? 1 : fac(n-1) * n;
             };
-
-            //return fac();
-
-
           
             //*
             checked
@@ -133,22 +116,25 @@ namespace pos409_sandbox
 
                 try 
                 {
-                    //result = "ans: " + long.Parse(input).ToString();
-                    num = ulong.Parse(input);
+                    num = long.Parse(input);
 
                     if (num < 0)
                     {
-                        throw new ArgumentOutOfRangeException("input", "must not be negative");
+                        //throw new ArgumentOutOfRangeException("input", "must not be negative");
+
+                        //ArgumentOutOfRangeException ex;
+                        //ex = new ArgumentOutOfRangeException("Must not be Negative", ex);
+
+
+                        throw new ArgumentOutOfRangeException("Must not be Negative");
+
+                       
                     }
-
-                    //return factorial(num).ToString();
                     return fac(num).ToString();
-
                 }
                 catch (FormatException)
                 {
                     return "Format Exception";
-                    //throw;
                 }
                 catch (OverflowException)
                 {
@@ -160,9 +146,6 @@ namespace pos409_sandbox
                 }
             }
             //*/
-
-            //return result;
-
         }
 
 
@@ -296,7 +279,7 @@ namespace pos409_sandbox
                         }
                         else
                         {
-                            Console.WriteLine(getFactorial(input));
+                            Console.WriteLine(factorial(input));
                         }
 
 
