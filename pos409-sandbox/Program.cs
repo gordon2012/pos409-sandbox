@@ -89,14 +89,86 @@ namespace pos409_sandbox
     class Program
     {
 
-        static long factorial(int n)
+        static long factorial(long n)
         {
-            return n == 0 ? 1 : (long)(factorial(n - 1) * n);
+            return n < 1 ? (n == 0 ? 1 : -1) : factorial(n - 1) * n;
         }
+
+        static string getFactorial(string input)
+        {
+            
+
+            ulong num;
+            //return "Result: " + ans.ToString();
+            //string result = "no error";
+
+            Func<ulong, ulong> fac = null;
+            fac = (n) =>
+            {
+                if (n == 0) return 1;
+
+                ulong res = 0;
+
+                try
+                {
+                    res = fac(n - 1) * n;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                return res;
+
+
+                //return n == 0 ? 1 : fac(n-1) * n;
+            };
+
+            //return fac();
+
+
+          
+            //*
+            checked
+            {
+
+                try 
+                {
+                    //result = "ans: " + long.Parse(input).ToString();
+                    num = ulong.Parse(input);
+
+                    if (num < 0)
+                    {
+                        throw new ArgumentOutOfRangeException("input", "must not be negative");
+                    }
+
+                    //return factorial(num).ToString();
+                    return fac(num).ToString();
+
+                }
+                catch (FormatException)
+                {
+                    return "Format Exception";
+                    //throw;
+                }
+                catch (OverflowException)
+                {
+                    return "Overflow Exception";
+                }
+                catch (Exception e)
+                {
+                    return e.Message;
+                }
+            }
+            //*/
+
+            //return result;
+
+        }
+
 
         static void Main(string[] args)
         {
-            string input = "";
+            string menu = "";
 
 
 
@@ -106,18 +178,33 @@ namespace pos409_sandbox
             Console.WriteLine("Welcome to the Simple Menu Demonstration Application");
             Console.WriteLine("====================================================");
 
-            while (!input.Equals("X"))
+            bool first = true;
+
+            while (true)
             {
                 Console.WriteLine(Environment.NewLine + "Main Menu");
                 Console.WriteLine("=========");
                 Console.WriteLine("1: Strings");
                 Console.WriteLine("2: Lottery");
                 Console.WriteLine("3: Structs");
+                Console.WriteLine("4: Factorial");
                 Console.WriteLine("X: Exit");
 
-                input = Console.ReadLine();
 
-                if (input.Equals("1"))
+                if(first)
+                {
+                    menu = "4";
+                    first = false;
+                } 
+                else
+                {
+                    menu = first ? "4" : Console.ReadLine();
+                }
+
+
+
+
+                if (menu.Equals("1"))
                 {
 
                     string[] fruits = { "Banana", "Orange", "Apple", "Kiwi", "Strawberry", "Grape" };
@@ -127,7 +214,7 @@ namespace pos409_sandbox
                     }
 
                 }
-                else if (input.Equals("2"))
+                else if (menu.Equals("2"))
                 {
                     Random rnd = new Random();
                     int[] numbers = { 0, 0, 0, 0, 0, 0 };
@@ -159,7 +246,7 @@ namespace pos409_sandbox
 
                 }
 
-                else if (input.Equals("3"))
+                else if (menu.Equals("3"))
                 {
                     bookStruct myBook = new bookStruct("Design Patterns: Elements of Reusable Object-Oriented Software", "Software Engineering",
                                                         "Gang of Four", 395, "0-201-63361-2", "Paperback");
@@ -180,15 +267,49 @@ namespace pos409_sandbox
 
 
                 }
-                else if (input.Equals("4"))
+                else if (menu.Equals("4"))
                 {
-                    Console.WriteLine(factorial(20).ToString("C"));
+                    //Console.WriteLine(factorial(20).ToString("C"));
+                    //int num = 0;
+                    //double result = -1;
+
+                    //while (num < 100)
+                    //{
+                    //    //result = factorial(num);
+                    //    //Console.WriteLine(num++ + ": " + result);
+                    //}
+
+                    //Console.WriteLine(getFactorial(Console.ReadLine()));
+
+                    string input = "";
+
+                    while (true)
+                    {
+
+                        Console.Write("Enter number to factorialize: ");
+
+                        input = Console.ReadLine();
+
+                        if (input.Equals("X", StringComparison.OrdinalIgnoreCase))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine(getFactorial(input));
+                        }
+
+
+                    }
+
+                    
 
                 }
 
-                else if (input.Equals("X"))
+                else if (menu.Equals("X", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Goodbye.");
+                    break;
                 }                
             }
 
