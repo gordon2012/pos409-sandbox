@@ -82,26 +82,18 @@ namespace pos409_sandbox
 
 
     
-    //class ChainNode : IEnumerable<ChainNode>
-    //{
-    //    public string Text = "";
+    
 
-    //    public ChainNode(string text)
-    //    {
-    //        Text = text;
-    //    }
-
-    //}
-
-
-    //class ChainEnumerator : IEnumerator<ChainNode>
-    //{
-
-    //}
 
 
     class Program
     {
+
+        static long factorial(int n)
+        {
+            return n == 0 ? 1 : (long)(factorial(n - 1) * n);
+        }
+
         static void Main(string[] args)
         {
             string input = "";
@@ -190,15 +182,7 @@ namespace pos409_sandbox
                 }
                 else if (input.Equals("4"))
                 {
-                    //Assembly myAssembly = Assembly.Load("System.Data");
-                    //Console.WriteLine(myAssembly.CodeBase);
-
-                    //myAssembly.GetType();
-
-                    //myAssembly.getex
-
-                    //Console.WriteLine(typeof(new string));
-                    //typeof
+                    Console.WriteLine(factorial(20).ToString("C"));
 
                 }
 
