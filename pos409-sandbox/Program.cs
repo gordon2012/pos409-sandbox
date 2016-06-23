@@ -74,7 +74,6 @@ namespace pos409_sandbox
         {
             return title + " by " + author + ", a " + coverStyle + " " + category + " book with " + pages + " page" + (pages == 1 ? "." : "s.") + " ISBN: " + ISBN;
         }
-
     }
 
 
@@ -82,81 +81,51 @@ namespace pos409_sandbox
     {
         static string factorial(string input)
         {
-            long num;
-
             Func<long, long> fac = null;
             fac = (n) =>
             {
-                if (n == 0) return 1;
-
-                long res = 0;
-
                 checked
                 {
                     try
                     {
-                        res = fac(n - 1) * n;
-                    }
-                    catch(StackOverflowException)
-                    {
-                        return 0;
+                        return n == 0 ? 1 : fac(n - 1) * n;
                     }
                     catch (Exception)
                     {
-                        //Console.WriteLine(e.ToString());
                         throw;
                     }
                 }
-                return res;
             };
-          
-            //*
-            checked
+
+            long num;
+            try 
             {
+                num = long.Parse(input);
 
-                try 
+                if (num < 0)
                 {
-                    num = long.Parse(input);
-
-                    if (num < 0)
-                    {
-                        //throw new ArgumentOutOfRangeException("input", "must not be negative");
-
-                        //ArgumentOutOfRangeException ex;
-                        //ex = new ArgumentOutOfRangeException("Must not be Negative", ex);
-
-
-                        throw new ArgumentOutOfRangeException("Must not be Negative");
-
-                       
-                    }
-                    return fac(num).ToString();
+                    throw new ArgumentOutOfRangeException("Must not be negative");
                 }
-                catch (FormatException)
-                {
-                    return "Format Exception";
-                }
-                catch (OverflowException)
-                {
-                    return "Overflow Exception";
-                }
-                catch (Exception e)
-                {
-                    return e.Message;
-                }
+                return fac(num).ToString();
             }
-            //*/
+            catch (FormatException)
+            {
+                return "Format Exception: not an integer";
+            }
+            catch (OverflowException)
+            {
+                return "Overflow Exception: integer too large";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
 
         static void Main(string[] args)
         {
             string menu = "";
-
-
-
-
-
 
             Console.WriteLine("Welcome to the Simple Menu Demonstration Application");
             Console.WriteLine("====================================================");
@@ -173,7 +142,6 @@ namespace pos409_sandbox
                 Console.WriteLine("4: Factorial");
                 Console.WriteLine("X: Exit");
 
-
                 if(first)
                 {
                     menu = "4";
@@ -183,8 +151,6 @@ namespace pos409_sandbox
                 {
                     menu = first ? "4" : Console.ReadLine();
                 }
-
-
 
 
                 if (menu.Equals("1"))
@@ -197,6 +163,7 @@ namespace pos409_sandbox
                     }
 
                 }
+
                 else if (menu.Equals("2"))
                 {
                     Random rnd = new Random();
@@ -224,9 +191,6 @@ namespace pos409_sandbox
                         Console.Write(n.ToString() + " ");
                     }
                     Console.WriteLine();
-
-
-
                 }
 
                 else if (menu.Equals("3"))
@@ -247,28 +211,13 @@ namespace pos409_sandbox
                     Console.WriteLine(nullBook);
                     nullBook.prevPage();
                     nullBook.nextPage();
-
-
                 }
+
                 else if (menu.Equals("4"))
                 {
-                    //Console.WriteLine(factorial(20).ToString("C"));
-                    //int num = 0;
-                    //double result = -1;
-
-                    //while (num < 100)
-                    //{
-                    //    //result = factorial(num);
-                    //    //Console.WriteLine(num++ + ": " + result);
-                    //}
-
-                    //Console.WriteLine(getFactorial(Console.ReadLine()));
-
                     string input = "";
-
                     while (true)
                     {
-
                         Console.Write("Enter number to factorialize: ");
 
                         input = Console.ReadLine();
@@ -281,12 +230,7 @@ namespace pos409_sandbox
                         {
                             Console.WriteLine(factorial(input));
                         }
-
-
                     }
-
-                    
-
                 }
 
                 else if (menu.Equals("X", StringComparison.OrdinalIgnoreCase))
@@ -295,10 +239,6 @@ namespace pos409_sandbox
                     break;
                 }                
             }
-
-
-            Console.ReadLine();
-
         }
     }
 }
