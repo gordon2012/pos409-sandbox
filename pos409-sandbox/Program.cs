@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Drawing;
 using System.Reflection;
+using System.Collections;
 
 namespace pos409_sandbox
 {
@@ -140,11 +141,12 @@ namespace pos409_sandbox
                 Console.WriteLine("2: Lottery");
                 Console.WriteLine("3: Structs");
                 Console.WriteLine("4: Factorial");
+                Console.WriteLine("5: HashTable");
                 Console.WriteLine("X: Exit");
 
                 if(first)
                 {
-                    menu = "4";
+                    menu = "5";
                     first = false;
                 } 
                 else
@@ -233,6 +235,19 @@ namespace pos409_sandbox
                     }
                 }
 
+                else if (menu.Equals("5"))
+                {
+                    Hashtable entities = new Hashtable();
+
+                    entities.Add(0, new Enemy() { X = 20, Y = 30, Life = 100, Name = "a moss snake" });
+                    entities.Add(1, new Enemy() { X = 15, Y = 35, Life = 80, Name = "a decaying skeleton" });
+                    entities.Add(2, new Item() { X = 15, Y = 35, Cost = 35.75, Name = "a rusty sword" });
+
+                    Console.WriteLine(entities[0].ToString());
+                    Console.WriteLine(entities[1].ToString());
+                    Console.WriteLine(entities[2].ToString());
+                }
+
                 else if (menu.Equals("X", StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Goodbye.");
@@ -241,4 +256,31 @@ namespace pos409_sandbox
             }
         }
     }
+
+    class Enemy
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Life { get; set; }
+        public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name + " at [" + X + ", " + Y + "] with " + Life + " hitpoints";
+        }
+    }
+
+    class Item
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public double Cost { get; set; }
+        public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return Name + " at [" + X + ", " + Y + "] worth $" + Cost;
+        }
+    }
+
 }
