@@ -1,0 +1,13 @@
+﻿[7/4/2016 9:23:55 PM]Bob slashes a decaying skeleton for 17 points of damage.
+[7/4/2016 9:24:00 PM]Alice pierces a decaying skeleton for 9 points of damage.
+[7/4/2016 9:24:05 PM]Charles burns a decaying skeleton for 23 points of damage.
+[7/4/2016 9:24:10 PM]Alice pierces a decaying skeleton for 7 points of damage.
+[7/4/2016 9:24:15 PM]Bob slashes a decaying skeleton for 13 points of damage.
+[7/4/2016 9:24:20 PM]Alice pierces a decaying skeleton for 11 points of damage.
+[7/4/2016 9:24:25 PM]Charles burns a decaying skeleton for 31 points of damage.
+[7/4/2016 9:24:30 PM]Bob slashes a decaying skeleton for 10 points of damage.
+[7/4/2016 9:24:35 PM]Alice pierces a decaying skeleton for 4 points of damage.
+[7/4/2016 9:24:40 PM]Bob slashes a decaying skeleton for 14 points of damage.
+[7/4/2016 9:24:45 PM]Alice pierces a decaying skeleton for 5 points of damage.
+[7/4/2016 9:24:50 PM]Charles burns a decaying skeleton for 29 points of damage.
+[7/4/2016 9:24:55 PM]Bob slashes a decaying skeleton for 12 points of damage.

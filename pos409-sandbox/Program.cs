@@ -8,6 +8,8 @@ using System.Drawing;
 using System.Reflection;
 using System.Collections;
 
+using System.IO;
+
 namespace pos409_sandbox
 {
     // Struct
@@ -142,11 +144,12 @@ namespace pos409_sandbox
                 Console.WriteLine("3: Structs");
                 Console.WriteLine("4: Factorial");
                 Console.WriteLine("5: HashTable");
+                Console.WriteLine("6: DPS Parser");
                 Console.WriteLine("X: Exit");
 
                 if(first)
                 {
-                    menu = "5";
+                    menu = "6";
                     first = false;
                 } 
                 else
@@ -246,6 +249,69 @@ namespace pos409_sandbox
                     Console.WriteLine(entities[0].ToString());
                     Console.WriteLine(entities[1].ToString());
                     Console.WriteLine(entities[2].ToString());
+                }
+
+                else if (menu.Equals("6"))
+                {
+                    // Fun with date and time
+                    //
+                    //DateTime date = DateTime.Now;
+                    //date = DateTime.Parse("7/4/2016 9:23:54 PM");
+                    /*  
+                    7/4/2016 5:23:54 PM
+                    */
+                    //Console.WriteLine(date.ToString());
+
+
+                    // ====
+                    // Participation 3
+                    //
+                    List<string> logBuffer = new List<string>();
+                    try
+                    {
+                        using(StreamReader file = new StreamReader("logfile.txt"))
+                        {
+                            while (!file.EndOfStream)
+                            {
+                                logBuffer.Add(file.ReadLine());
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.GetType().ToString() + ": " + ex.Message);
+                    }
+
+                    Hashtable players = new Hashtable();
+
+                    foreach (string item in logBuffer)
+                    {
+                        string[] vals = item.Split(']')[1].Split(' ');
+                        string player = vals[0];
+                        int damage = int.Parse(vals[vals.Length - 4]);
+
+                        if (players.ContainsKey(player))
+                        {
+                            players[player] = (int)players[player] + damage;
+                            
+                        }
+                        else
+                        {
+                            players.Add(player, damage);
+                        }
+                    }
+
+                    Console.WriteLine("Total damage done" + Environment.NewLine + "========");
+                    foreach (DictionaryEntry item in players)
+                    {
+                        Console.WriteLine(item.Key + ": " + item.Value.ToString());
+                    }
+                    //
+                    // ====
+
+
+
+
                 }
 
                 else if (menu.Equals("X", StringComparison.OrdinalIgnoreCase))
