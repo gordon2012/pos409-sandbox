@@ -310,6 +310,14 @@ namespace pos409_sandbox
                     // ====
 
 
+                    string[] fruitArray = { "Kiwi", "Orange", "Apple" };
+                    List<string> fruitList = fruitArray.ToList();
+
+
+                    fruitList.ForEach(i => Console.WriteLine(i));
+
+                    fruitArray.ToList().ForEach(i => Console.WriteLine(i));
+
 
 
                 }
