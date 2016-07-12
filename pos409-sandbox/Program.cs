@@ -10,6 +10,8 @@ using System.Collections;
 
 using System.IO;
 
+using System.Text.RegularExpressions;
+
 namespace pos409_sandbox
 {
     // Struct
@@ -145,11 +147,12 @@ namespace pos409_sandbox
                 Console.WriteLine("4: Factorial");
                 Console.WriteLine("5: HashTable");
                 Console.WriteLine("6: DPS Parser");
+                Console.WriteLine("7: Regex");
                 Console.WriteLine("X: Exit");
 
                 if(first)
                 {
-                    menu = "6";
+                    menu = "7";
                     first = false;
                 } 
                 else
@@ -290,6 +293,10 @@ namespace pos409_sandbox
                         string player = vals[0];
                         int damage = int.Parse(vals[vals.Length - 4]);
 
+
+                        //Regex.Split()
+
+
                         if (players.ContainsKey(player))
                         {
                             players[player] = (int)players[player] + damage;
@@ -319,8 +326,28 @@ namespace pos409_sandbox
                     fruitArray.ToList().ForEach(i => Console.WriteLine(i));
 
 
-
                 }
+
+
+                else if (menu.Equals("7"))
+                {
+                    string loglines = @"[7/4/2016 9:23:55 PM]Bob slashes a decaying skeleton for 17 points of damage.
+                                        [7/4/2016 9:24:00 PM]Alice pierces a decaying skeleton for 9 points of damage.";
+
+                    string pattern = @"\[(.*)\]([A-Za-z]+) ([a-z]+) ([a-z ]+) for (\d+)";
+
+                    MatchCollection matches = Regex.Matches(loglines, pattern);
+
+                    foreach (Match match in matches)
+                    {
+                        Console.WriteLine("Timestamp  : " + match.Groups[1].Value);
+                        Console.WriteLine("Attacker   : " + match.Groups[2].Value);
+                        Console.WriteLine("Weapon verb: " + match.Groups[3].Value);
+                        Console.WriteLine("Defender   : " + match.Groups[4].Value);
+                        Console.WriteLine("Damage     : " + match.Groups[5].Value + Environment.NewLine);
+                    }
+                }
+
 
                 else if (menu.Equals("X", StringComparison.OrdinalIgnoreCase))
                 {
